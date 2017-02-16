@@ -5,55 +5,49 @@ import (
 	"strings"
 )
 
-func ParsePost(s, posturl string) (string, error) {
-	println(s)
+type FBPostData struct {
+	PostUrl     string
+	TimeStamp   string
+	ProfileLink *ProfileLink
+	ImageUrl    string
+	Content     string
+}
+
+func ParsePost(s, posturl string) (*FBPostData, error) {
+	fb := FBPostData{PostUrl: posturl}
 
 	doc, err := goquery.NewDocumentFromReader(strings.NewReader(s))
 	if err != nil {
-		return "", err
+		return &fb, err
 	}
 
-	result := ""
-	result += posturl
-	result += "\n"
-
-	timestamp, err := GetTimeStamp(doc)
+	fb.TimeStamp, err = GetTimeStamp(doc)
 	if err != nil {
-		return "", err
+		return &fb, err
 	}
-	result += timestamp
-	result += "\n"
 
-	pl, err := GetProfileLink(doc)
+	fb.ProfileLink, err = GetProfileLink(doc)
 	if err != nil {
-		return "", err
+		return &fb, err
 	}
-	result += pl.Name
-	result += "\n"
-	result += pl.Url
-	result += "\n"
 
-	imgurl, err := GetImageUrl(doc)
+	fb.ImageUrl, err = GetImageUrl(doc)
 	if err != nil {
-		return "", err
+		return &fb, err
 	}
-	result += imgurl
-	result += "\n"
 
-	content, err := GetContent(doc)
+	fb.Content, err = GetContent(doc)
 	if err != nil {
-		return "", err
+		return &fb, err
 	}
-	result += content
-	result += "\n"
 
-	return result, nil
+	return &fb, nil
 }
 
-func Parse(url string) (string, error) {
+func Parse(url string) (*FBPostData, error) {
 	doc, err := goquery.NewDocument(url)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	// If not login, post looks like
@@ -61,7 +55,7 @@ func Parse(url string) (string, error) {
 	s := QuerySelector(doc, "div.hidden_elem > code")
 	cmt, err := s.Html()
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 	return ParsePost(cmt[5:len(cmt)-4], url)
 }
