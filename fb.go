@@ -11,6 +11,8 @@ type FBPostData struct {
 	ProfileLink *ProfileLink
 	ImageUrl    string
 	Content     string
+	Summary     string
+	Title       string
 }
 
 func ParsePost(s, posturl string) (*FBPostData, error) {

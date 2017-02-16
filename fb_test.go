@@ -13,18 +13,21 @@ func TestParse(t *testing.T) {
 	post, err := ParsePost(testhtml1, "")
 	if err != nil {
 		t.Error(err)
+		return
 	}
 	t.Log(post)
 
 	post, err = ParsePost(testhtml2, "")
 	if err != nil {
 		t.Error(err)
+		return
 	}
 	t.Log(post)
 
 	post, err = ParsePost(testhtml3, "")
 	if err != nil {
 		t.Error(err)
+		return
 	}
 	t.Log(post)
 }
