@@ -1,11 +1,11 @@
-{{.Title}} - Dhamma by Ajahn Jayasāro
+{{.Title}} ... - Dhamma by Ajahn Jayasāro
 ##################################################
 
 :date: {{.TimeStamp}}
 :author: Ajahn Jayasāro
 :tags: Ajahn Jayasāro
 :category: Ajahn Jayasāro
-:summary: {{.Summary}}
+:summary: {{.Summary}} ...
           - Dhamma by `Ajahn Jayasāro`_
 :og_image: http://cdn.amaravati.org/wp-content/uploads/2014/10/Ajahn-Jayasaro-by-Somkid.jpg
 
@@ -19,7 +19,7 @@
 .. image:: 
 .. image:: {{.ImageUrl}}
    :align: center
-   :alt: {{.Summary}}
+   :alt: {{.Title}}
 
 ----
 
