@@ -24,9 +24,15 @@ func ToreStructuredText(post *FBPostData, tmplpath string) (string, error) {
 }
 
 func GetTemplatePath(post *FBPostData) (tmplpath, filename string) {
+	prefix := strings.Replace(strings.ToLower(post.Title), " ", "-", -1)
 	if strings.Contains(post.ProfileLink.Name, "Dhamma by Ajahn Jayasaro") {
-		tmplpath = "rsttemplate/jaya-en.rst"
-		filename = strings.Replace(strings.ToLower(post.Title), " ", "-", -1) + "-dhamma-by-ajahn-jayasaaro%en.rst"
+		if strings.Contains(post.Content, "ปิยสีโลภิกขุ") {
+			tmplpath = "rsttemplate/jaya-th.rst"
+			filename = prefix + "-dhamma-by-ajahn-jayasaaro%th.rst"
+		} else {
+			tmplpath = "rsttemplate/jaya-en.rst"
+			filename = prefix + "-dhamma-by-ajahn-jayasaaro%en.rst"
+		}
 		return
 	}
 

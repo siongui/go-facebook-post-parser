@@ -4,8 +4,8 @@ import (
 	"testing"
 )
 
-func TestToRstJaya(t *testing.T) {
-	url := "https://www.facebook.com/jayasaro.panyaprateep.org/photos/a.318290164946343.68815.318196051622421/1119567364818615/"
+func TestToRst(t *testing.T) {
+	url := "https://www.facebook.com/jayasaro.panyaprateep.org/photos/a.318290164946343.68815.318196051622421/1120112961430722/"
 	post, err := Parse(url)
 	if err != nil {
 		t.Error(err)
