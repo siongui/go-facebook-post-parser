@@ -10,7 +10,9 @@
 :og_image: http://cdn.amaravati.org/wp-content/uploads/2014/10/Ajahn-Jayasaro-by-Somkid.jpg
 
 
-{{.Content}}
+.. raw:: html
+
+  {{.Content}}
 
 .. container:: align-right
 

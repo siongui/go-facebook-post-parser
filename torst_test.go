@@ -5,14 +5,14 @@ import (
 )
 
 func TestToRst(t *testing.T) {
-	url := "https://www.facebook.com/jayasaro.panyaprateep.org/photos/a.318290164946343.68815.318196051622421/1120112961430722/"
+	url := "https://www.facebook.com/DDMCHAN/photos/a.169338186456052.44118.143595409030330/1392471394142719/"
 	post, err := Parse(url)
 	if err != nil {
 		t.Error(err)
 		return
 	}
 
-	post.Title = "The Buddha taught that wise people"
+	post.Title = "妄念不起．萬緣不拒"
 	tmplpath, filename := GetTemplatePath(post)
 	rst, err := ToreStructuredText(post, tmplpath)
 	if err != nil {
