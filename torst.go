@@ -39,6 +39,10 @@ func GetTemplatePath(post *FBPostData) (tmplpath, filename string) {
 		tmplpath = "rsttemplate/shengyen-zh.rst"
 		filename = "master-sheng-yen%zh.rst"
 	}
+	if strings.Contains(post.Content, "ชยสาโร") {
+		tmplpath = "rsttemplate/jaya2-th.rst"
+		filename = "ajahn-jayasaaro%th.rst"
+	}
 
 	return
 }
