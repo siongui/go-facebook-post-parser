@@ -2,7 +2,7 @@ package parsefb
 
 import (
 	"bytes"
-	"fmt"
+	"io"
 	"os"
 	"strings"
 	"text/template"
@@ -59,7 +59,7 @@ func SaveRst(filepath, rst string) error {
 	}
 	defer fo.Close()
 
-	_, err = fmt.Fprintf(fo, rst)
+	_, err = io.Copy(fo, strings.NewReader(rst))
 	if err != nil {
 		return err
 	}
