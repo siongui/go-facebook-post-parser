@@ -31,3 +31,4 @@
 .. _《動靜皆自在》: http://ddc.shengyen.org/mobile/toc/04/04-15/index.php
 .. _《聖嚴說禪》: http://ddc.shengyen.org/mobile/toc/04/04-12/index.php
 .. _《聖嚴法師教禪坐》: http://ddc.shengyen.org/mobile/toc/04/04-09/index.php
+.. _《信心銘講錄》: http://ddc.shengyen.org/mobile/toc/04/04-07/index.php
