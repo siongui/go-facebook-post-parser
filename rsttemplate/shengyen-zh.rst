@@ -32,3 +32,5 @@
 .. _《聖嚴說禪》: http://ddc.shengyen.org/mobile/toc/04/04-12/index.php
 .. _《聖嚴法師教禪坐》: http://ddc.shengyen.org/mobile/toc/04/04-09/index.php
 .. _《信心銘講錄》: http://ddc.shengyen.org/mobile/toc/04/04-07/index.php
+.. _《工作好修行：聖嚴法師的38則職場智慧》: http://ddc.shengyen.org/mobile/toc/10/10-04/index.php
+.. _《公案100》: http://www.book853.com/show.aspx?id=147&cid=34
