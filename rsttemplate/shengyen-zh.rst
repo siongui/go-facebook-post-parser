@@ -34,3 +34,4 @@
 .. _《工作好修行：聖嚴法師的38則職場智慧》: http://ddc.shengyen.org/mobile/toc/10/10-04/index.php
 .. _《公案100》: http://www.book853.com/show.aspx?id=147&cid=34
 .. _《禪與悟》: http://ddc.shengyen.org/mobile/toc/04/04-06/index.php
+.. _《從心溝通》: http://www.book853.com/show.aspx?id=126&cid=33
