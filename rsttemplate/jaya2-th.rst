@@ -14,7 +14,6 @@
 
   {{.Content}}
 
-.. image:: 
 .. image:: {{.ImageUrl}}
    :align: center
    :alt: {{.Title}}
