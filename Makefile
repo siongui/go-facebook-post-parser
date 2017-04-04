@@ -17,3 +17,5 @@ fmt:
 install:
 	@echo "\033[92mInstalling goquery ...\033[0m"
 	go get -u github.com/PuerkitoBio/goquery
+	@echo "\033[92mInstalling github.com/ghodss/yaml ...\033[0m"
+	go get -u github.com/ghodss/yaml
