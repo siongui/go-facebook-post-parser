@@ -29,6 +29,11 @@ func GetTemplatePath(post *FBPostData) (tmplpath, filename string) {
 		filename = "master-chan-yun%zh.rst"
 		return
 	}
+	if strings.Contains(post.Content, "淨空法師親述") {
+		tmplpath = "rsttemplate/master-chin-kung-zh.rst"
+		filename = "master-chin-kung%zh.rst"
+		return
+	}
 
 	prefix := strings.Replace(strings.ToLower(post.Title), " ", "-", -1)
 	if strings.Contains(post.ProfileLink.Name, "Dhamma by Ajahn Jayasaro") {
