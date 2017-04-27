@@ -39,3 +39,4 @@
 .. _《拈花微笑》: http://www.book853.com/show.aspx?id=73&cid=170
 .. _《聖嚴法師教默照禪》: http://www.book853.com/show.aspx?id=89&cid=23
 .. _《禪的世界》: http://ddc.shengyen.org/mobile/toc/04/04-08/index.php
+.. _《法鼓晨音》: http://ddc.shengyen.org/mobile/toc/08/08-08/index.php
