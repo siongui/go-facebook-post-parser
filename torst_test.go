@@ -2,8 +2,8 @@ package parsefb
 
 import (
 	"github.com/ghodss/yaml"
+	"github.com/siongui/responsive-embed-generator"
 	"io/ioutil"
-	"strings"
 	"testing"
 )
 
@@ -13,13 +13,6 @@ type YamlData struct {
 	Summary  string `json:"summary"`
 	PostUrl  string `json:"posturl"`
 	ImageUrl string `json:"imageurl"`
-}
-
-func FacebookIframeWidthAuto(ic string) string {
-	if strings.HasPrefix(ic, `<iframe src="https://www.facebook.com/plugins/post.php`) {
-		return strings.Replace(strings.Replace(ic, "width=500", "width=auto", 1), `width="500"`, `width="auto"`, 1)
-	}
-	return ic
 }
 
 func YamlToStruct(path string) (td YamlData, err error) {
@@ -51,7 +44,7 @@ func TestToRst(t *testing.T) {
 
 	post.Title = td.Title
 	post.Summary = td.Summary
-	post.PostUrl = FacebookIframeWidthAuto(td.PostUrl)
+	post.PostUrl, _ = regen.GetResponsiveFbPhotoCode(td.PostUrl)
 	post.ImageUrl = td.ImageUrl
 	tmplpath, filename := GetTemplatePath(post)
 	rst, err := ToreStructuredText(post, tmplpath)

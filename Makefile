@@ -19,3 +19,5 @@ install:
 	go get -u github.com/PuerkitoBio/goquery
 	@echo "\033[92mInstalling github.com/ghodss/yaml ...\033[0m"
 	go get -u github.com/ghodss/yaml
+	@echo "\033[92mInstalling github.com/siongui/responsive-embed-generator ...\033[0m"
+	go get -u github.com/siongui/responsive-embed-generator
