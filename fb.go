@@ -13,6 +13,7 @@ type FBPostData struct {
 	Content     string
 	Summary     string
 	Title       string
+	Author      string
 }
 
 func ParsePost(s, posturl string) (*FBPostData, error) {
@@ -50,6 +51,10 @@ func Parse(url string) (*FBPostData, error) {
 	doc, err := goquery.NewDocument(url)
 	if err != nil {
 		return nil, err
+	}
+
+	if strings.Contains(url, ".blogspot.") {
+		return ParseBlogspotPost(doc)
 	}
 
 	// If not login, post looks like

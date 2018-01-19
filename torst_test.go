@@ -42,10 +42,18 @@ func TestToRst(t *testing.T) {
 		return
 	}
 
-	post.Title = td.Title
-	post.Summary = td.Summary
-	post.PostUrl, _ = regen.GetResponsiveFbPhotoCode(td.PostUrl)
-	post.ImageUrl = td.ImageUrl
+	if td.Title != "" {
+		post.Title = td.Title
+	}
+	if td.Summary != "" {
+		post.Summary = td.Summary
+	}
+	if td.PostUrl != "" {
+		post.PostUrl, _ = regen.GetResponsiveFbPhotoCode(td.PostUrl)
+	}
+	if td.ImageUrl != "" {
+		post.ImageUrl = td.ImageUrl
+	}
 	tmplpath, filename := GetTemplatePath(post)
 	rst, err := ToreStructuredText(post, tmplpath)
 	if err != nil {

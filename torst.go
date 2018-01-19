@@ -46,6 +46,11 @@ func GetTemplatePath(post *FBPostData) (tmplpath, filename string) {
 	}
 
 	prefix := strings.Replace(strings.ToLower(post.Title), " ", "-", -1)
+	if strings.Contains(post.Author, "Shen-Fu Tsai") {
+		tmplpath = "rsttemplate/blogspot-sftsai-en.rst"
+		filename = prefix + "%en.rst"
+		return
+	}
 	if strings.Contains(post.ProfileLink.Name, "Dhamma by Ajahn Jayasaro") {
 		if strings.Contains(post.Content, "ปิยสีโลภิกขุ") {
 			tmplpath = "rsttemplate/jaya-th.rst"
