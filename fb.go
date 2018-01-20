@@ -14,6 +14,7 @@ type FBPostData struct {
 	Summary     string
 	Title       string
 	Author      string
+	Tags        string
 }
 
 func ParsePost(s, posturl string) (*FBPostData, error) {

@@ -18,8 +18,8 @@ func GetBlogspotTimeStamp(doc *goquery.Document) (string, error) {
 }
 
 func GetBlogspotTitle(doc *goquery.Document) (string, error) {
-	t := QuerySelector(doc, "h3.post-title > a")
-	return t.Text(), nil
+	t := QuerySelector(doc, "h3.post-title")
+	return strings.TrimSpace(t.Text()), nil
 }
 
 func GetBlogspotContent(doc *goquery.Document) (string, error) {
@@ -69,6 +69,18 @@ func GetBlogspotAuthor(doc *goquery.Document) (string, error) {
 	return a.Text(), nil
 }
 
+func GetBlogspotTags(doc *goquery.Document) (string, error) {
+	s := doc.Find("span.post-labels > a")
+	labels := ""
+	s.Each(func(_ int, l *goquery.Selection) {
+		if labels != "" {
+			labels += ", "
+		}
+		labels += l.Text()
+	})
+	return labels, nil
+}
+
 func ParseBlogspotPost(doc *goquery.Document) (*FBPostData, error) {
 	bs := FBPostData{}
 	var err error
@@ -99,6 +111,11 @@ func ParseBlogspotPost(doc *goquery.Document) (*FBPostData, error) {
 	}
 
 	bs.Author, err = GetBlogspotAuthor(doc)
+	if err != nil {
+		return &bs, err
+	}
+
+	bs.Tags, err = GetBlogspotTags(doc)
 	if err != nil {
 		return &bs, err
 	}
