@@ -1,8 +1,10 @@
 package parsefb
 
 import (
+	"bufio"
 	"errors"
 	"github.com/PuerkitoBio/goquery"
+	"strings"
 )
 
 func GetBlogspotTimeStamp(doc *goquery.Document) (string, error) {
@@ -22,7 +24,24 @@ func GetBlogspotTitle(doc *goquery.Document) (string, error) {
 
 func GetBlogspotContent(doc *goquery.Document) (string, error) {
 	c := QuerySelector(doc, "div.post-body")
-	return c.Html()
+
+	s, err := c.Html()
+	if err != nil {
+		return "", err
+	}
+
+	var lines []string
+
+	scanner := bufio.NewScanner(strings.NewReader(s))
+	for scanner.Scan() {
+		lines = append(lines, "  "+scanner.Text())
+	}
+
+	if err := scanner.Err(); err != nil {
+		return "", err
+	}
+
+	return strings.Join(lines, "\n"), nil
 }
 
 func GetBlogspotUrl(doc *goquery.Document) (string, error) {
@@ -39,7 +58,7 @@ func GetBlogspotSummary(doc *goquery.Document) (string, error) {
 	meta := QuerySelector(doc, "meta[property='og:description']")
 	d, ok := meta.Attr("content")
 	if ok {
-		return d, nil
+		return strings.TrimSpace(d), nil
 	}
 
 	return "", errors.New("cannot find summary")
