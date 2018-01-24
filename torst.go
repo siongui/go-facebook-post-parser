@@ -6,7 +6,17 @@ import (
 	"os"
 	"strings"
 	"text/template"
+	"unicode"
 )
+
+func TitleLength(t string) int {
+	l := 0
+	for _, r := range t {
+		unicode.Is(unicode.Thai, r)
+		l++
+	}
+	return l
+}
 
 func ToreStructuredText(post *FBPostData, tmplpath string) (string, error) {
 	tmpl, err := template.ParseFiles(tmplpath)
