@@ -15,13 +15,6 @@ type YamlData struct {
 	ImageUrl string `json:"imageurl"`
 }
 
-func TestTitleLength(t *testing.T) {
-	if l := TitleLength("เราให้ความสำคัญกับอารมณ์มากเหลือเกิน ... - ธรรมะ โดย พระอาจารย์ชยสาโร"); l != 69 {
-		t.Error("string length error: ", l)
-		return
-	}
-}
-
 func YamlToStruct(path string) (td YamlData, err error) {
 	b, err := ioutil.ReadFile(path)
 	if err != nil {
@@ -67,9 +60,15 @@ func TestToRst(t *testing.T) {
 		t.Error(err)
 		return
 	}
-	t.Log(rst)
 
-	err = SaveRst(filename, rst)
+	rst2, err := SetRstDocTitleWidth(rst)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	t.Log(rst2)
+
+	err = SaveRst(filename, rst2)
 	if err != nil {
 		t.Error(err)
 	}
