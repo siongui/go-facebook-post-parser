@@ -5,6 +5,24 @@ Web Scrape Instagram Stories in Go_
 `Web Scrape`_ Instagram stories in Go_.
 
 
+Obtain Cookies
+++++++++++++++
+
+Use extensions like EditThisCookie_ or `cookie-txt-export`_ on Chrome to fetch:
+
+- ``ds_user_id``
+- ``sessionid``
+- ``csrftoken``
+
+or see `Obtain cookies`_
+
+
+Get User Info
++++++++++++++
+
+See `Instagram API -Get the userId <https://stackoverflow.com/a/44773079>`_
+
+
 UNLICENSE
 +++++++++
 
@@ -42,3 +60,6 @@ References
 .. _Go: https://golang.org/
 .. _UNLICENSE: http://unlicense.org/
 .. _Web Scrape: https://www.google.com/search?q=Web+Scrape
+.. _EditThisCookie: https://www.google.com/search?q=EditThisCookie
+.. _cookie-txt-export: https://github.com/siongui/cookie-txt-export.go
+.. _Obtain cookies: https://github.com/hoschiCZ/instastories-backup#obtain-cookies
