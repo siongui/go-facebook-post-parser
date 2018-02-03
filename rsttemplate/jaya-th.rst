@@ -14,11 +14,6 @@
 
   {{.Content}}
 
-.. container:: align-right
-
-  | ธรรมะคำสอน โดย `พระอาจารย์ชยสาโร`_
-  | แปลถอดความ โดย ปิยสีโลภิกขุ
-
 .. image:: {{.ImageUrl}}
    :align: center
    :alt: {{.Title}}
