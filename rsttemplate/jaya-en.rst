@@ -9,9 +9,7 @@
           - Dhamma by `Ajahn Jayasāro`_
 :og_image: http://cdn.amaravati.org/wp-content/uploads/2014/10/Ajahn-Jayasaro-by-Somkid.jpg
 
-.. raw:: html
-
-  {{.Content}}
+{{.Summary}}
 
 .. container:: align-right
 
