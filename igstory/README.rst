@@ -57,6 +57,18 @@ References
        | 
        | `GitHub - cjkumaresh/instagram-downloader: download images from instagram <https://github.com/cjkumaresh/instagram-downloader>`_
 
+.. [1] | `golang http request with cookie - Google search <https://www.google.com/search?q=golang+http+request+with+cookie>`_
+       | `golang http request with cookie - DuckDuckGo search <https://duckduckgo.com/?q=golang+http+request+with+cookie>`_
+       | `golang http request with cookie - Ecosia search <https://www.ecosia.org/search?q=golang+http+request+with+cookie>`_
+       | `golang http request with cookie - Qwant search <https://www.qwant.com/?q=golang+http+request+with+cookie>`_
+       | `golang http request with cookie - Bing search <https://www.bing.com/search?q=golang+http+request+with+cookie>`_
+       | `golang http request with cookie - Yahoo search <https://search.yahoo.com/search?p=golang+http+request+with+cookie>`_
+       | `golang http request with cookie - Baidu search <https://www.baidu.com/s?wd=golang+http+request+with+cookie>`_
+       | `golang http request with cookie - Yandex search <https://www.yandex.com/search/?text=golang+http+request+with+cookie>`_
+       |
+       | `Go HTTP Post and use Cookies - Stack Overflow <https://stackoverflow.com/questions/12756782/go-http-post-and-use-cookies>`_
+       | `golang request with cookie <http://constd.com/post/golang-request-with-cookie>`_
+
 .. _Go: https://golang.org/
 .. _UNLICENSE: http://unlicense.org/
 .. _Web Scrape: https://www.google.com/search?q=Web+Scrape
