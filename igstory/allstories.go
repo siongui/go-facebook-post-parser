@@ -3,13 +3,27 @@ package igstory
 // Get all stories of users that a user follows
 
 import (
+	"encoding/json"
 	"errors"
-	"io/ioutil"
 	"net/http"
 	"strconv"
 )
 
 const UrlAllStories = `https://i.instagram.com/api/v1/feed/reels_tray/`
+
+type RawReelsTray struct {
+	Trays []Tray `json:"tray"`
+}
+
+type Tray struct {
+	Id              int      `json:"id"`
+	LatestReelMedia int      `json:"latest_reel_media"`
+	User            TrayUser `json:"user"`
+}
+
+type TrayUser struct {
+	Username string `json:"username"`
+}
 
 func GetAllStories(cfg map[string]string) (err error) {
 	req, err := http.NewRequest("GET", UrlAllStories, nil)
@@ -35,11 +49,16 @@ func GetAllStories(cfg map[string]string) (err error) {
 		return
 	}
 
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
+	dec := json.NewDecoder(resp.Body)
+	t := RawReelsTray{}
+	if err = dec.Decode(&t); err != nil {
 		return
 	}
-	println(string(b))
+	for _, tray := range t.Trays {
+		print(tray.Id)
+		print(" : ")
+		println(tray.User.Username)
+	}
 
 	return
 }
