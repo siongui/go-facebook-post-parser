@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 const UrlAllStories = `https://i.instagram.com/api/v1/feed/reels_tray/`
@@ -28,15 +29,22 @@ type TrayUser struct {
 }
 
 type TrayItem struct {
-	TakenAt         int                    `json:"taken_at"`
-	DeviceTimestamp int                    `json:"device_timestamp"`
+	//TakenAt         int                     `json:"taken_at"`
+	DeviceTimestamp int64                  `json:"device_timestamp"`
+	ImageVersions2  TrayItemImageVersion2  `json:"image_versions2"`
 	VideoVersions   []TrayItemVideoVersion `json:"video_versions"`
-	HasAudio        bool                   `json:"has_audio"`
+	//HasAudio        bool                    `json:"has_audio"`
 }
 
 type TrayItemVideoVersion struct {
 	Url string `json:"url"`
 	Id  string `json:"id"`
+}
+
+type TrayItemImageVersion2 struct {
+	Candidates []struct {
+		Url string `json:"url"`
+	} `json:"candidates"`
 }
 
 func GetAllStories(cfg map[string]string) (err error) {
@@ -79,9 +87,20 @@ func printTray(tray Tray) {
 	fmt.Print(tray.Id)
 	fmt.Print(" : ")
 	fmt.Println(tray.User.Username)
+
+	// One item represents one story
 	for _, item := range tray.Items {
+		// print timestamp of story
+		t := time.Unix(item.DeviceTimestamp, 0)
+		fmt.Println(t.Format(time.UnixDate))
+
+		// check if the story is video or image
 		if len(item.VideoVersions) > 0 {
+			// the story is video
 			fmt.Println(item.VideoVersions[0].Url)
+		} else {
+			// the story is image
+			fmt.Println(item.ImageVersions2.Candidates[0].Url)
 		}
 	}
 }
