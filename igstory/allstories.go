@@ -47,7 +47,7 @@ type TrayItemImageVersion2 struct {
 	} `json:"candidates"`
 }
 
-func GetAllStories(cfg map[string]string) (err error) {
+func GetAllStories(cfg map[string]string) (trays []Tray, err error) {
 	req, err := http.NewRequest("GET", UrlAllStories, nil)
 	if err != nil {
 		return
@@ -76,9 +76,7 @@ func GetAllStories(cfg map[string]string) (err error) {
 	if err = dec.Decode(&t); err != nil {
 		return
 	}
-	for _, tray := range t.Trays {
-		printTray(tray)
-	}
+	trays = t.Trays
 
 	return
 }
