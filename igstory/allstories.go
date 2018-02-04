@@ -5,6 +5,7 @@ package igstory
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 	"strconv"
 )
@@ -16,13 +17,26 @@ type RawReelsTray struct {
 }
 
 type Tray struct {
-	Id              int      `json:"id"`
-	LatestReelMedia int      `json:"latest_reel_media"`
-	User            TrayUser `json:"user"`
+	Id              int        `json:"id"`
+	LatestReelMedia int        `json:"latest_reel_media"`
+	User            TrayUser   `json:"user"`
+	Items           []TrayItem `json:"items"`
 }
 
 type TrayUser struct {
 	Username string `json:"username"`
+}
+
+type TrayItem struct {
+	TakenAt         int                    `json:"taken_at"`
+	DeviceTimestamp int                    `json:"device_timestamp"`
+	VideoVersions   []TrayItemVideoVersion `json:"video_versions"`
+	HasAudio        bool                   `json:"has_audio"`
+}
+
+type TrayItemVideoVersion struct {
+	Url string `json:"url"`
+	Id  string `json:"id"`
 }
 
 func GetAllStories(cfg map[string]string) (err error) {
@@ -55,10 +69,19 @@ func GetAllStories(cfg map[string]string) (err error) {
 		return
 	}
 	for _, tray := range t.Trays {
-		print(tray.Id)
-		print(" : ")
-		println(tray.User.Username)
+		printTray(tray)
 	}
 
 	return
+}
+
+func printTray(tray Tray) {
+	fmt.Print(tray.Id)
+	fmt.Print(" : ")
+	fmt.Println(tray.User.Username)
+	for _, item := range tray.Items {
+		if len(item.VideoVersions) > 0 {
+			fmt.Println(item.VideoVersions[0].Url)
+		}
+	}
 }
