@@ -17,6 +17,11 @@ func TestGetAllStories(t *testing.T) {
 	}
 
 	if len(trays) > 0 {
-		GetUserStories(strconv.Itoa(trays[0].Id), config)
+		tray, err := GetUserStories(strconv.Itoa(trays[0].Id), config)
+		if err != nil {
+			t.Error(err)
+			return
+		}
+		printTray(tray)
 	}
 }

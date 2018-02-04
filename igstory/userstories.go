@@ -3,9 +3,8 @@ package igstory
 // Get all stories of a specific user
 
 import (
+	"encoding/json"
 	"errors"
-	"fmt"
-	"io/ioutil"
 	"net/http"
 	"strconv"
 	"strings"
@@ -13,7 +12,7 @@ import (
 
 const UrlUserStories = `https://i.instagram.com/api/v1/feed/user/{{USERID}}/reel_media/`
 
-func GetUserStories(id string, cfg map[string]string) (err error) {
+func GetUserStories(id string, cfg map[string]string) (tray Tray, err error) {
 	url := strings.Replace(UrlUserStories, "{{USERID}}", id, 1)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -38,11 +37,7 @@ func GetUserStories(id string, cfg map[string]string) (err error) {
 		return
 	}
 
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return
-	}
-	fmt.Println(string(b))
-
+	dec := json.NewDecoder(resp.Body)
+	err = dec.Decode(&tray)
 	return
 }
