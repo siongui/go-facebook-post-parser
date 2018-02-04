@@ -90,7 +90,7 @@ func printTray(tray Tray) {
 	for _, item := range tray.Items {
 		// print timestamp of story
 		t := time.Unix(item.DeviceTimestamp, 0)
-		fmt.Println(t.Format(time.UnixDate))
+		fmt.Println(t.Format(time.RFC1123Z))
 
 		// check if the story is video or image
 		if len(item.VideoVersions) > 0 {
