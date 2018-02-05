@@ -1,6 +1,8 @@
 package igstory
 
 // Get all stories of users that a user follows
+// The response will return all users with unexpired stories,
+// but only stories of users of unread stories will be returned.
 
 import (
 	"encoding/json"
@@ -29,8 +31,8 @@ type TrayUser struct {
 }
 
 type TrayItem struct {
-	//TakenAt         int                     `json:"taken_at"`
-	DeviceTimestamp int64                  `json:"device_timestamp"`
+	TakenAt         int64                  `json:"taken_at"`
+	DeviceTimestamp int64                  `json:"device_timestamp"` // not reliable value
 	ImageVersions2  TrayItemImageVersion2  `json:"image_versions2"`
 	VideoVersions   []TrayItemVideoVersion `json:"video_versions"`
 	//HasAudio        bool                    `json:"has_audio"`
@@ -89,8 +91,9 @@ func printTray(tray Tray) {
 	// One item represents one story
 	for _, item := range tray.Items {
 		// print timestamp of story
-		t := time.Unix(item.DeviceTimestamp, 0)
-		fmt.Println(t.Format(time.RFC1123Z))
+		// DO NOT use DeviceTimestamp. It's not reliable
+		t := time.Unix(item.TakenAt, 0)
+		fmt.Println(t.Format(time.RFC3339))
 
 		// check if the story is video or image
 		if len(item.VideoVersions) > 0 {
