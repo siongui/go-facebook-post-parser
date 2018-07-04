@@ -59,11 +59,11 @@ func Parse(url string) (*FBPostData, error) {
 	}
 
 	// If not login, post looks like
-	// <div class="permalinkPost">...</div>
-	s := QuerySelector(doc, "div.permalinkPost")
+	// <div class="hidden_elem"><code id="u_0_p"><!-- ... --></code></div>
+	s := QuerySelector(doc, "div.hidden_elem > code")
 	cmt, err := s.Html()
 	if err != nil {
 		return nil, err
 	}
-	return ParsePost(cmt, url)
+	return ParsePost(cmt[5:len(cmt)-4], url)
 }
